@@ -1,0 +1,39 @@
+Build fails if CC is set to "cross-gcc --sysroot=foobar"
+
+diff --git a/tools/ucl/makefile b/tools/ucl/makefile
+index 38d4472..ea35dd9 100755
+--- a/tools/ucl/makefile
++++ b/tools/ucl/makefile
+@@ -1,9 +1,9 @@
+ uclobjs = $(obj)ucl_linux
+ UTILOBJS = $(patsubst %.c,$(uclobjs)/%.o,$(wildcard src/*.c))
+ 
+-CC=gcc
+-AR=ar
+-LD=gcc
++BUILD_CC=gcc
++BUILD_AR=ar
++BUILD_LD=gcc
+ RM=rm -rf 
+ MKDIR=@mkdir
+ 
+@@ -12,16 +12,16 @@ LDFLAGS = -Iinclude -I.
+ SYSLIB = -lwinmm 
+ 
+ all: $(UTILOBJS)
+-	$(AR) r $(uclobjs)/libucl_linux.a $^
++	$(BUILD_AR) r $(uclobjs)/libucl_linux.a $^
+ 
+ 
+ $(uclobjs)/%.o : %.cpp
+ 	$(MKDIR) -p $(@D)
+-	$(CC) -c $(CFLAGS) $< -o $@
++	$(BUILD_CC) -c $(CFLAGS) $< -o $@
+ 	
+ $(uclobjs)/%.o : %.c
+ 	$(MKDIR) -p $(@D)
+-	$(CC) -c $(CFLAGS) $< -o $@
++	$(BUILD_CC) -c $(CFLAGS) $< -o $@
+ 
+ clean:
+ 	$(RM) $(uclobjs)
