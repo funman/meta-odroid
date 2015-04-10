@@ -13,7 +13,9 @@ UBOOT_REPO_URI ??= "git://github.com/hardkernel/u-boot.git"
 UBOOT_BRANCH_odroid-c1 ?= "odroidc-v2011.03"
 UBOOT_BRANCH_odroid-xu3 ?= "odroidxu3-v2012.07"
 
-EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX} CC="${CC}" V=1'
+UBOOT_CC = "${CC}"
+UBOOT_CC_remove = '-mfpu=neon'
+EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX} CC="${UBOOT_CC}" V=1'
 
 SRC_URI = " \
   ${UBOOT_REPO_URI};branch=${UBOOT_BRANCH} \
