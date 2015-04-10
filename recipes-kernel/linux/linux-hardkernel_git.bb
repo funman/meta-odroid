@@ -25,15 +25,12 @@ KERNEL_DEFCONFIG_odroid-xu3 = "odroidxu3_defconfig"
 SRC_URI = " \
   ${KERNEL_REPO_URI};branch=${KBRANCH} \
 "
-SRC_URI_append_odroid-c1 = " \
-  file://0001-Revert-broken-DTB-build-rules-changes.patch \
-"
 
 S = "${WORKDIR}/git"
 
 SRCREV = "${AUTOREV}"
 
-KV_odroid-c1 = "3.10.70"
+KV_odroid-c1 = "3.10.73"
 KV_odroid-xu3 = "3.10.69"
 PV = "${KV}+gitr${SRCPV}"
 LOCALVERSION ?= ""
